@@ -1,7 +1,7 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { useUserStore } from '../stores/user';
+import { useUserStore } from '../stores/user'
 import UserService from '@/api/UserService.js'
 import OperationService from '@/api/OperationService.js'
 

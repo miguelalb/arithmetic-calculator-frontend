@@ -22,17 +22,13 @@ class RecordService {
   }
   
   deleteUserRecord(token, record_id){
-    const searchParams = new URLSearchParams()
     const headers = {
       'Content-Type': 'application/json',
       'Authorization': token
     }
-    const searParams = new URLSearchParams()
-    searParams.append('record_id', record_id)
-
-    return apiClient.delete('/records' , {
-      headers: headers,
-      params: searchParams
+  
+    return apiClient.delete(`/records/${record_id}` , {
+      headers: headers
     })
   }
 }
