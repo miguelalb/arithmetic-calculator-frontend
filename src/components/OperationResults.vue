@@ -40,7 +40,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
+  <div class="operation-results mt-3">
     <div v-if="operationResults">
       <h2>Result:</h2>
       <h2 class="text-bold mb-4 text-green-500">{{ operationResults.operation_response }}</h2>
@@ -61,3 +61,21 @@ onMounted(() => {
     </div>
   </div>
 </template>
+
+<style scoped>
+@media (min-width: 1024px) {
+  .operation-results {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media (max-width: 1023px) {
+  .operation-results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+</style>
