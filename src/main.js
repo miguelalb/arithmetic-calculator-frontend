@@ -14,6 +14,8 @@ import "primeflex/primeflex.css"
 import Button from "primevue/button"
 import Dropdown from 'primevue/dropdown'
 import InputNumber from 'primevue/inputnumber';
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
 
 
 const app = createApp(App)
@@ -24,5 +26,7 @@ app.use(PrimeVue)
 app.component('Button', Button)
 app.component('Dropdown', Dropdown)
 app.component('InputNumber', InputNumber)
+app.component('DataTable', DataTable)
+app.component('Column', Column)
 
 app.mount('#app')

@@ -4,7 +4,6 @@ import axiosRetry from "axios-retry";
 
 class OperationService {
   newOperation(operationRequestData) {
-    console.log("Data to Send", operationRequestData)
     return apiClient.post('/operations', operationRequestData)
   }
 

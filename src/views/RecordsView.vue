@@ -1,6 +1,10 @@
+<script setup>
+import UserRecords from '../components/UserRecords.vue';
+</script>
+
 <template>
   <div class="records">
-    <h2>This is the records page</h2>
+    <UserRecords />
   </div>
 </template>
 

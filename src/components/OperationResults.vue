@@ -19,7 +19,6 @@ const goToNewOperation = () => {
 onMounted(() => {
   operationService.pollForResults(route.params.recordId)
   .then((response) => {
-    console.log("Operation Response", response.data)
     operationResults.value = response.data
   })
   .catch((err) => {
