@@ -1,12 +1,14 @@
 import apiClient from "./base";
 
 class RecordService {
-  getUserRecords(token, page, per_page, date_start, date_end, balance_start, balance_end) {
+  getUserRecords(token, {page, per_page, date_start, date_end, balance_start, balance_end}) {
     const searchParams = new URLSearchParams()
     const headers = {
       'Content-Type': 'application/json',
       'Authorization': token
     }
+    console.log("Did I send this?", page)
+    console.log("Did I send this?", per_page)
 
     if (page){
       searchParams.append('page', page)
