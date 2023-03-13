@@ -26,7 +26,7 @@ If you'd like to change these URLs or change the port you can configure this in 
 
 ## Customize configuration
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+See [Vite Configuration Reference](https://vitejs.dev/config/). 
 
 ## Project Setup
 
