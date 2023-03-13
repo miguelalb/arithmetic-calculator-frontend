@@ -12,7 +12,7 @@ Create a `.env.local` file at the root of this frontend project code and fill ou
 `VITE_LOGIN_HOSTEDUI_URL`  
 `VITE_SIGNOUT_HOSTEDUI_URL`  
 environment variables. 
-**Note:** You need to update these environment variables values in the `.env.local` file each time you run `sls deploy` to re-deploy the app, even if you have not run `sls remove`. This is because AWS may generate a different client_id which will change the hosted UI URL login and signout URLs.
+**Note:** You need to update these environment variables values in the `.env.local` file each time you run `sls deploy` if you're re-deploying the app, even if you have not run `sls remove`. This is because AWS *might* generate a different `client_id` which will change the hosted UI URL login and signout URLs.
 
 By the default the AWS Cognito Hosted UI will use the following addresses for callback and signout URLs:  
 - http://localhost:5173/callback/

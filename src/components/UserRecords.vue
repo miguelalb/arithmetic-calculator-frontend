@@ -9,13 +9,12 @@ const recordService = new RecordService()
 const userRecords = ref(null)
 const totalRecords = ref(null)
 const loading = ref(false)
-const lazyParams = ref(null) // page, per_page, date_start, date_end, balance_start, balance_end
+const lazyParams = ref(null)
 
 const loadLazyData = (lazyParams) => {
   loading.value = true
   recordService.getUserRecords(store.$state.userToken, lazyParams)
     .then((response) => {
-      console.log("ResponseData", response.data)
       loading.value = false
       userRecords.value = response.data.data
       totalRecords.value = response.data.total
@@ -26,7 +25,6 @@ const loadLazyData = (lazyParams) => {
 }
 
 const onPage = (event) => {
-  console.log("OnPage Event", event)
   lazyParams.value = {
     page: event.page + 1,
     per_page: event.rows
@@ -45,13 +43,14 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="my-4">
+  <div class="my-4 w-full">
     <DataTable :value="userRecords" removableSort stripedRows lazy paginator :rows="5" dataKey="record_id"
                :rowsPerPageOptions="[5, 10, 20, 50]" tableStyle="min-width: 30rem" :totalRecords="totalRecords" 
                :loading="loading" @page="onPage($event)" 
                paginatorTemplate="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink RowsPerPageDropdown"
                currentPageReportTemplate="{first} to {last} of {totalRecords}"
             >
+      <template #empty> No user records found. </template>
       <Column field="date" sortable header="Date">
         <template #body="slotProps">
           {{ format(new Date(slotProps.data.date), "PPPpp") }}

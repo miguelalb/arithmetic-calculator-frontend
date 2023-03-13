@@ -24,7 +24,6 @@ onMounted(() => {
     operationResults.value = response.data
   })
   .catch((err) => {
-    console.log(err)
     errorMessage.value = err
   })
 

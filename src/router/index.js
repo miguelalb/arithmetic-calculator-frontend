@@ -63,7 +63,6 @@ const router = createRouter({
 router.beforeEach(async (to, from) => {
   const store = useUserStore()
   
-  // TODO REMEMBER TO CHANGE THIS
   if (!store.isLoggedIn && to.name != 'signin' && to.name != 'signout' && to.name != 'callback') {
     return {name: 'signin'}
   }
