@@ -9,7 +9,6 @@ const userRecords = ref(null)
 onMounted(() => {
   recordService.getUserRecords()
     .then((response) => {
-      console.log("ResponseData", response.data.data)
       userRecords.value = response.data.data
     })
     .catch((err) => {

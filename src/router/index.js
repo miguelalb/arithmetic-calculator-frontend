@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import { useUserStore } from '@/stores/user'
+import { storeToRefs } from 'pinia'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,12 +20,21 @@ const router = createRouter({
       component: () => import('../views/SigninView.vue')
     },
     {
-      path: '/signout',
+      path: '/signout/:pathMatch(.*)*',
       name: 'signout',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/SignoutView.vue')
+    },
+    {
+      path: '/callback/:pathMatch(.*)*',
+      name: 'callback',
+      props: true,
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/CallbackView.vue')
     },
     {
       path: '/operation-results/:recordId',
@@ -48,6 +59,15 @@ const router = createRouter({
       component: () => import('../views/NotFoundView.vue')
     }
   ]
+})
+
+router.beforeEach(async (to, from) => {
+  const store = useUserStore()
+  
+  // TODO REMEMBER TO CHANGE THIS
+  if (!store.isLoggedIn && to.name != 'signin' && to.name != 'signout' && to.name != 'callback') {
+    return {name: 'signin'}
+  }
 })
 
 export default router

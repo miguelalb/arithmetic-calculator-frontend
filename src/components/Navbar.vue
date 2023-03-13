@@ -1,13 +1,18 @@
 <script setup>
-import { RouterLink } from 'vue-router';
+import { RouterLink } from 'vue-router'
+import { useUserStore } from '../stores/user'
+
+const signoutHostedUIURL = import.meta.env.VITE_SIGNOUT_HOSTEDUI_URL
+
+const store = useUserStore()
 </script>
 
 <template>
   <nav>
     <RouterLink :to="{ name: 'home' }">New Operation</RouterLink>
     <RouterLink :to="{ name: 'records'}">User Records</RouterLink>
-    <RouterLink :to="{ name: 'signin' }">Sign In</RouterLink>
-    <RouterLink :to="{ name: 'signout' }">Sign Out</RouterLink>
+    <RouterLink v-if="!store.isLoggedIn" :to="{ name: 'signin' }">Sign In</RouterLink>
+    <a v-if="store.isLoggedIn" :href="signoutHostedUIURL">Sign Out</a>
   </nav>
 </template>
 
