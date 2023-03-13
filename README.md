@@ -8,8 +8,8 @@ This Repo contains the code for the **frontend**, you can find the [backend sour
 Clone the [backend repo](https://github.com/miguelalb/arithmetic-calculator-backend) and deploy the backend first. After running deploy on the backend, an `env.json` file will be created at the root of the backend project repo. This file contains the outputs of the CloudFormation stack, including the **service endpoint** and the **AWS Cognito Hosted UI login URL** for users to login.  
 
 Create a `.env.local` file at the root of this frontend project code and fill out the    
-`VUE_APP_SERVICE_ENDPOINT`  
-`VUE_APP_LOGIN_HOSTEDUI_URL`  
+`VITE_SERVICE_ENDPOINT`  
+`VITE_LOGIN_HOSTEDUI_URL`  
 environment variables.
 
 By the default the AWS Cognito Hosted UI will use the following addresses for callback and signout URLs:  
