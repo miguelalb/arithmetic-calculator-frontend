@@ -29,6 +29,13 @@ const resetValues = () => {
 
 const onSubmit = (e) => {
   resetValues()
+  
+  if (operationRequest.value.num1 && !operationRequest.value.num2) {
+    errorMessage.value = "Invalid Operation: Needs second operand value to perform this operation"
+    isInvalid.value = true
+    loading.value = false
+  }
+
   if (operationRequest.value.num2 && !operationRequest.value.num1){
     errorMessage.value = "Invalid Operation: Needs first operand value to perform this operation"
     isInvalid.value = true
