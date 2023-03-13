@@ -98,7 +98,7 @@ onMounted(() => {
       <Column field="operation_response" header="Operation Response"></Column>
       <Column field="deleted" header="Status" sortable>
         <template #body="slotProps"> 
-          <Tag v-if="slotProps.data.deleted" icon="pi pi-check" class="bg-red-200" severity="danger" value="Archived" rounded></Tag>
+          <Tag v-if="slotProps.data.deleted" icon="pi pi-times" class="bg-red-200" severity="danger" value="Archived" rounded></Tag>
           <Tag v-else icon="pi pi-check" severity="success" value="Active" rounded></Tag>
         </template>
       </Column>
