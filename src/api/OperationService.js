@@ -3,21 +3,39 @@ import axiosRetry from "axios-retry";
 
 
 class OperationService {
-  newOperation(operationRequestData) {
-    return apiClient.post('/operations', operationRequestData)
+  newOperation(operationRequestData, token) {
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': token
+    }
+    return apiClient.post('/operations', operationRequestData, {
+      headers: headers
+  })
   }
 
-  getAvailableOperations() {
-    return apiClient.get('/operations')
+  getAvailableOperations(token) {
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': token
+    }
+    return apiClient.get('/operations', {
+      headers: headers
+    })
   }
   
-  pollForResults(recordId) {
+  pollForResults(recordId, token) {
     axiosRetry(apiClient, {
       retryDelay: axiosRetry.exponentialDelay,
       retries: 3,
       retryCondition: () => true
       })
-    return apiClient.get(`/operations/poll-results/${recordId}`)
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': token
+    }
+    return apiClient.get(`/operations/poll-results/${recordId}`, {
+      headers: headers
+    })
   }
 }
 

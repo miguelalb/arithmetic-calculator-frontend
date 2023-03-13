@@ -4,8 +4,7 @@ export const useUserStore = defineStore('user', {
   state: () => {
     return {
       isLoggedIn: false,
-      userToken: null,
-      userBalance: 0
+      userToken: null
     }
   },
   actions: {
@@ -17,10 +16,6 @@ export const useUserStore = defineStore('user', {
     removeToken() {
       this.userToken = null;
       this.isLoggedIn = false;
-    },
-
-    setBalance(balance) {
-      this.userBalance = balance;
     }
   }
 })

@@ -1,13 +1,15 @@
 <script setup>
 import { ref, onMounted } from 'vue';
+import { useUserStore } from '../stores/user';
 import RecordService from '@/api/RecordService';
 import { format } from 'date-fns'
 
+const store = useUserStore()
 const recordService = new RecordService()
 const userRecords = ref(null)
 
 onMounted(() => {
-  recordService.getUserRecords()
+  recordService.getUserRecords(store.$state.userToken)
     .then((response) => {
       userRecords.value = response.data.data
     })

@@ -1,8 +1,13 @@
 import apiClient from "./base";
 
 class RecordService {
-  getUserRecords(page, per_page, date_start, date_end, balance_start, balance_end) {
+  getUserRecords(token, page, per_page, date_start, date_end, balance_start, balance_end) {
     const searchParams = new URLSearchParams()
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': token
+    }
+
     if (page){
       searchParams.append('page', page)
     }
@@ -20,8 +25,12 @@ class RecordService {
     }
     if (balance_end) {
       searchParams.append('balance_end', balance_end)
-    }
-    return apiClient.get('/records',  {params: searchParams})
+    }   
+    
+    return apiClient.get('/records',  {
+      headers: headers,
+      params: searchParams
+    })
   }
 }
 

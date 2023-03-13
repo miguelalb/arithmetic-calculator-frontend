@@ -1,10 +1,12 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router'
+import { useUserStore } from '../stores/user';
 import UserService from '@/api/UserService.js'
 import OperationService from '@/api/OperationService.js'
 
 const router = useRouter()
+const store = useUserStore()
 const userService = new UserService()
 const operationService = new OperationService()
 
@@ -27,8 +29,9 @@ const resetValues = () => {
 
 const onSubmit = (e) => {
   resetValues()
+  
 
-  operationService.newOperation({...operationRequest.value})
+  operationService.newOperation({...operationRequest.value}, store.$state.userToken)
     .then((response) => {
       resetValues()
       router.push({ name: 'operation-results', params: {recordId: response.data.RecordId} })
@@ -39,20 +42,18 @@ const onSubmit = (e) => {
         isInvalid.value = true
         loading.value = false
       }
-      
-      console.log(error)
     })
   
 }
 
 onMounted(() => {
-  userService.getUserBalance()
+  userService.getUserBalance(store.$state.userToken)
     .then((response) => {
       user.value = response.data
     })
     .catch((err) => console.log(err));
   
-  operationService.getAvailableOperations()
+  operationService.getAvailableOperations(store.$state.userToken)
     .then((response) => {
       const availableOperationsSortedbyCost = response.data.data.sort((a, b) => a.cost - b.cost)
       availableOperations.value = availableOperationsSortedbyCost

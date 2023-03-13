@@ -1,11 +1,13 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import { useUserStore } from '../stores/user';
 import OperationService from '@/api/OperationService.js'
 import Loader from '@/components/Loader.vue'
 
 const router = useRouter()
 const route = useRoute()
+const store = useUserStore()
 const operationService = new OperationService()
 
 const operationResults = ref(null)
@@ -17,7 +19,7 @@ const goToNewOperation = () => {
 }
 
 onMounted(() => {
-  operationService.pollForResults(route.params.recordId)
+  operationService.pollForResults(route.params.recordId, store.$state.userToken)
   .then((response) => {
     operationResults.value = response.data
   })
@@ -35,8 +37,8 @@ onMounted(() => {
 <template>
   <div>
     <div v-if="operationResults">
-      <h4>Result:</h4>
-      <h2 class="text-bold mb-4">{{ operationResults.operation_response }}</h2>
+      <h2>Result:</h2>
+      <h2 class="text-bold mb-4 text-green-500">{{ operationResults.operation_response }}</h2>
       <h4>Operaton Cost: ${{ operationResults.amount }}</h4>
       <h4>Remaining Balance: ${{ operationResults.user_balance }} </h4>
       <Button label="New Operation" class="my-3" @click="goToNewOperation" />

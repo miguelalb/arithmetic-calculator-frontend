@@ -8,9 +8,8 @@ const router = useRouter()
 const route = useRoute()
 
 onMounted(() => {
-  console.log("FromRoute", route.fullPath)
   const url = route.fullPath || window.location.href
-  const idToken = url.split('#')[1].split('=')[1]
+  const idToken = url.split('#')[1].split('=')[1].split('&access_token')[0]
   store.setToken(idToken)
   router.push({ name: 'home'})
 })
