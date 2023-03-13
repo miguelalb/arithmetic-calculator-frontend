@@ -80,17 +80,17 @@ onMounted(() => {
                currentPageReportTemplate="{first} to {last} of {totalRecords}"
             >
       <template #empty> No user records found. </template>
-      <Column field="date"  header="Date" sortable>
+      <Column field="date"  header="Date" >
         <template #body="slotProps">
           {{ format(new Date(slotProps.data.date), "PPPpp") }}
         </template>
       </Column>
-      <Column field="amount"  header="Amount" sortable>
+      <Column field="amount"  header="Amount" >
         <template #body="slotProps">
           $ {{slotProps.data.amount}}
         </template>
       </Column>
-      <Column field="user_balance"  header="User Balance" sortable>
+      <Column field="user_balance"  header="User Balance" >
         <template #body="slotProps">
           $ {{slotProps.data.user_balance}}
         </template>
