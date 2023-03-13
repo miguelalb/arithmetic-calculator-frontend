@@ -5,7 +5,7 @@ This Repo contains the code for the **frontend**, you can find the [backend sour
 
 ### Local Testing/Deployment
 
-Clone the [backend repo](https://github.com/miguelalb/arithmetic-calculator-backend) and deploy the backend first. After running deploy on the backend, an `env.json` file will be created at the root of the backend project repo. This file contains the outputs of the CloudFormation stack, including the **service endpoint** and the **AWS Cognito Hosted UI login URL** for users to login.  
+Clone the [backend repo](https://github.com/miguelalb/arithmetic-calculator-backend) and deploy the backend first. After running deploy on the backend, an `env.json` file will be created at the root of the backend project repo. This file contains the outputs of the CloudFormation stack, including the **service endpoint**, the **AWS Cognito Hosted UI login URL**, and the **AWS Cognito Hosted UI Signout URL** for users to login.  
 
 Create a `.env.local` file at the root of this frontend project code and fill out the    
 `VITE_SERVICE_ENDPOINT`  
