@@ -21,6 +21,10 @@ const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }
 
+const resetInputs = () => {
+  operationRequest.value = {}
+}
+
 const resetValues = () => {
   loading.value = true
   errorMessage.value = null
@@ -34,34 +38,38 @@ const onSubmit = (e) => {
     errorMessage.value = "Invalid Operation: Needs second operand value to perform this operation"
     isInvalid.value = true
     loading.value = false
-    return
+    resetInputs()
   }
 
-  if (operationRequest.value.num2 && !operationRequest.value.num1){
+  else if (operationRequest.value.num2 && !operationRequest.value.num1){
     errorMessage.value = "Invalid Operation: Needs first operand value to perform this operation"
     isInvalid.value = true
     loading.value = false
-    return
+    resetInputs()
   }
-
-  operationService.newOperation({...operationRequest.value}, store.$state.userToken)
-    .then((response) => {
-      resetValues()
-      router.push({ name: 'operation-results', params: {recordId: response.data.RecordId} })
-    })
-    .catch((error) => {
-      const errText = "Invalid Operation: Please make sure you input all required and valid data."
-      if (error.response) {
-        errorMessage.value = error.response.data || errText
-        isInvalid.value = true
-        loading.value = false
-      }
-      else {
-        errorMessage.value = errText
-        isInvalid.value = true
-        loading.value = false
-      }
-    })
+  
+  else {
+    operationService.newOperation({...operationRequest.value}, store.$state.userToken)
+      .then((response) => {
+        resetValues()
+        resetInputs()
+        router.push({ name: 'operation-results', params: {recordId: response.data.RecordId} })
+      })
+      .catch((error) => {
+        const errText = "Invalid Operation: Please make sure you input all required and valid data."
+        if (error.response) {
+          errorMessage.value = error.response.data || errText
+          isInvalid.value = true
+          loading.value = false
+        }
+        else {
+          errorMessage.value = errText
+          isInvalid.value = true
+          loading.value = false
+        }
+        resetInputs()
+      })
+  }
   
 }
 
