@@ -27,8 +27,7 @@ const resetValues = () => {
 
 const onSubmit = (e) => {
   resetValues()
-  // send out 
-  console.log("DATATA", {...operationRequest.value}) 
+
   operationService.newOperation({...operationRequest.value})
     .then((response) => {
       resetValues()
@@ -55,7 +54,6 @@ onMounted(() => {
   
   operationService.getAvailableOperations()
     .then((response) => {
-      console.log("AvailableOperations", response.data)
       const availableOperationsSortedbyCost = response.data.data.sort((a, b) => a.cost - b.cost)
       availableOperations.value = availableOperationsSortedbyCost
     })
