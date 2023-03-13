@@ -34,12 +34,14 @@ const onSubmit = (e) => {
     errorMessage.value = "Invalid Operation: Needs second operand value to perform this operation"
     isInvalid.value = true
     loading.value = false
+    return
   }
 
   if (operationRequest.value.num2 && !operationRequest.value.num1){
     errorMessage.value = "Invalid Operation: Needs first operand value to perform this operation"
     isInvalid.value = true
     loading.value = false
+    return
   }
 
   operationService.newOperation({...operationRequest.value}, store.$state.userToken)
