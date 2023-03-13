@@ -73,30 +73,30 @@ onMounted(() => {
 <template>
   <div class="my-4 w-full">
     <ConfirmDialog></ConfirmDialog>
-    <DataTable :value="userRecords" removableSort stripedRows lazy paginator :rows="5" dataKey="record_id"
+    <DataTable :value="userRecords" stripedRows lazy paginator :rows="5" dataKey="record_id"
                :rowsPerPageOptions="[5, 10, 20, 50]" tableStyle="min-width: 30rem" :totalRecords="totalRecords" 
                :loading="loading" @page="onPage($event)" 
                paginatorTemplate="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink RowsPerPageDropdown"
                currentPageReportTemplate="{first} to {last} of {totalRecords}"
             >
       <template #empty> No user records found. </template>
-      <Column field="date" sortable header="Date">
+      <Column field="date"  header="Date" sortable>
         <template #body="slotProps">
           {{ format(new Date(slotProps.data.date), "PPPpp") }}
         </template>
       </Column>
-      <Column field="amount" sortable header="Amount">
+      <Column field="amount"  header="Amount" sortable>
         <template #body="slotProps">
           $ {{slotProps.data.amount}}
         </template>
       </Column>
-      <Column field="user_balance" sortable header="User Balance">
+      <Column field="user_balance"  header="User Balance" sortable>
         <template #body="slotProps">
           $ {{slotProps.data.user_balance}}
         </template>
       </Column>
       <Column field="operation_response" header="Operation Response"></Column>
-      <Column field="deleted" header="Status" sortable>
+      <Column field="deleted" header="Status">
         <template #body="slotProps"> 
           <Tag v-if="slotProps.data.deleted" icon="pi pi-times" class="bg-red-200" severity="danger" value="Archived" rounded></Tag>
           <Tag v-else icon="pi pi-check" severity="success" value="Active" rounded></Tag>
