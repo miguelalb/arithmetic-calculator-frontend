@@ -10,6 +10,7 @@ Clone the [backend repo](https://github.com/miguelalb/arithmetic-calculator-back
 Create a `.env.local` file at the root of this frontend project code and fill out the    
 `VITE_SERVICE_ENDPOINT`  
 `VITE_LOGIN_HOSTEDUI_URL`  
+`VITE_SIGNOUT_HOSTEDUI_URL`  
 environment variables.
 
 By the default the AWS Cognito Hosted UI will use the following addresses for callback and signout URLs:  
