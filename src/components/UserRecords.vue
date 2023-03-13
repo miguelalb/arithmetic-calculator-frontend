@@ -67,6 +67,9 @@ onMounted(() => {
         </template>
       </Column>
       <Column field="operation_response" header="Operation Response"></Column>
+      <Column field="deleted" header="Deleted">
+
+      </Column>
     </DataTable>
   </div>
 </template>

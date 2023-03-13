@@ -23,8 +23,14 @@ onMounted(() => {
   .then((response) => {
     operationResults.value = response.data
   })
-  .catch((err) => {
-    errorMessage.value = err
+  .catch((error) => {
+    const errText = "Invalid Operation: Please make sure you input all required and valid data."
+    if (error.response) {
+        errorMessage.value = error.response.data || errText
+      }
+    else {
+      errorMessage.value = errText
+    }
   })
 
   setTimeout(() => {
@@ -44,7 +50,7 @@ onMounted(() => {
     </div>
     
     <div v-else-if="timedOut">
-      <h4 class="my-2">Invalid Operation</h4>
+      <h3 class="my-2 text-red-600">Invalid Operation</h3>
       <h4>{{ errorMessage }}</h4>
       <Button label="New Operation" class="my-3" @click="goToNewOperation" />
     </div>

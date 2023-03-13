@@ -48,8 +48,14 @@ const onSubmit = (e) => {
       router.push({ name: 'operation-results', params: {recordId: response.data.RecordId} })
     })
     .catch((error) => {
+      const errText = "Invalid Operation: Please make sure you input all required and valid data."
       if (error.response) {
-        errorMessage.value = error.response.data
+        errorMessage.value = error.response.data || errText
+        isInvalid.value = true
+        loading.value = false
+      }
+      else {
+        errorMessage.value = errText
         isInvalid.value = true
         loading.value = false
       }
