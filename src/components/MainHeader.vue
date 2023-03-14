@@ -10,6 +10,9 @@
     </h3>
     <h4>
       Author: <a href="https://www.linkedin.com/in/miguel-acevedo/" target="_blank" rel="noopener noreferrer">Miguel Acevedo</a>
+      <br>
+      Source Code: <a href="https://github.com/miguelalb/arithmetic-calculator-backend" target="_blank" rel="noopener noreferrer">Backend</a> | 
+      <a href="https://github.com/miguelalb/arithmetic-calculator-frontend" target="_blank" rel="noopener noreferrer">Frontend</a>
     </h4>
   </div>
 </template>
