@@ -26,7 +26,7 @@ class OperationService {
   pollForResults(recordId, token) {
     axiosRetry(apiClient, {
       retryDelay: axiosRetry.exponentialDelay,
-      retries: 3,
+      retries: 5,
       retryCondition: () => true
       })
     const headers = {

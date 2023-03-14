@@ -35,7 +35,7 @@ onMounted(() => {
 
   setTimeout(() => {
     timedOut.value = true
-  }, 4000);
+  }, 6000);
 })
 </script>
 
